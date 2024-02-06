@@ -1,0 +1,15 @@
+<html lang="en">
+<head><title>Sync</title></head>
+<body>
+<button id="button">Sync</button>
+<script>
+    const button = document.getElementById('button');
+    button.addEventListener('click', async () => {
+        const dirHandle = await window.showDirectoryPicker();
+        for await (const entry of dirHandle.values()) {
+            console.log(entry.kind, entry.name);
+        }
+    });
+</script>
+</body>
+</html>

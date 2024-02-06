@@ -1,15 +1,25 @@
+<!DOCTYPE html>
 <html lang="en">
-<head><title>Sync</title></head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML 5 Boilerplate</title>
+</head>
 <body>
-<button id="button">Sync</button>
-<script>
-    const button = document.getElementById('button');
-    button.addEventListener('click', async () => {
-        const dirHandle = await window.showDirectoryPicker();
-        for await (const entry of dirHandle.values()) {
-            console.log(entry.kind, entry.name);
+<button onClick="showPicker()">Click mee</button>
+<script type="module">
+    import { showDirectoryPicker } from 'https://cdn.jsdelivr.net/npm/file-system-access/lib/es2018.js';
+    const showPicker = async () => {
+        try {
+            const handle = await showDirectoryPicker();
+            console.log(handle);
+        } catch (e) {
+            console.log(e);
         }
-    });
+    };
+    window.showPicker = showPicker;
 </script>
 </body>
 </html>
